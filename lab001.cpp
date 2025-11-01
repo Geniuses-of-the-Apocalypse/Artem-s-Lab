@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-struct para{
+struct Para{
     int first, second;
     
-    para(int sfirst = 1, int ssecond= 3){
+    Para(int sfirst = 1, int ssecond= 3){
         first = sfirst;
         second = ssecond;
     }
@@ -24,21 +24,38 @@ struct para{
     
     int rangecheck(int num){
         if(num >= first && num < second) return 1;
-        return 0;
+        else return 0;
     }
+    
 };
+
+Para make_Para(int l, int r){
+    if(l>=r){cout << "Ошибка"; exit(0);}
+    Para sus;
+    sus.first = l;
+    sus.second = r;
+    return sus;
+}
 
 int main() {
     int n;
-    para one;
+    Para one;
+    Para two = make_Para(1, 10);
     do{
     one.read();
     one.display();
     
-    cout<<"Вв. число для проверки диапозона: "; cin >> n;
+    cout<<"Вв. число для проверки диапозона 1: "; cin >> n;
     
-    if(one.rangecheck(n)) cout<<"В диапозоне"<< endl;
-    else cout<<"Вне диапозона" << endl;
+    if(one.rangecheck(n)) cout<<"В диапозоне 1"<< endl;
+    else cout<<"Вне диапозона 1" << endl;
+    
+    two.display();
+    
+    cout<<"Вв. число для проверки диапозона 2: "; cin >> n;
+    
+    if(two.rangecheck(n)) cout<<"В диапозоне 2"<< endl;
+    else cout<<"Вне диапозона 2" << endl;
     
     cout<<"Продолжать ввод? 1-да, 0-нет "; cin>> n;
     }while(n);
