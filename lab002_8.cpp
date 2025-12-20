@@ -91,11 +91,8 @@ class Rational{
     }
 };
 
-int main() {
-    Rational d1, d2;
-    int choice = 0;
-    do{
-        cout << "Меню:" <<endl
+void menu(){
+    cout << "Меню:" <<endl
         << "(1)Вв. дробь d1" << endl
         << "(2)Вв. дробь d2" << endl
         << "(3)Выв. дробь d1" << endl
@@ -110,7 +107,15 @@ int main() {
         << "(12)Выв. d1 > d2" << endl
         << "(13)Выв. d1 < d2" << endl
         << "(0)Выход" << endl
-        << "Ввод: "; cin >> choice;
+        << "Ввод: ";
+}
+
+int main() {
+    Rational d1, d2;
+    int choice = 0;
+    do{
+        menu();
+        cin >> choice;
         
         switch(choice){
             case 1: d1.read(); break;
