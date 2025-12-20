@@ -50,24 +50,41 @@ class Rational{
         return drob;
     }
     
+    void reduce(){
+        int c = a, d = b, del;
+        //общий делитель по алгоритму евклида
+        while(c>0 && d>0){
+            if(c >= d) c %= d;
+            else d %= c;
+        }
+        if(c > d) del = c;
+        else del = d;
+        a /= d;
+        b /= d;
+    }
+    
     void add(Rational c){
         a = (a*c.b) + (c.a*b);
         b *= c.b;
+        this->reduce();
     }
     
     void sub(Rational c){
         a = (a*c.b) - (c.a*b);
         b *= c.b;
+        this->reduce();
     }
     
     void mul(Rational c){
         a *= c.a;
         b *= c.b;
+        this->reduce();
     }
     
     void div(Rational c){
         a *= c.b;
         b *= c.a;
+        this->reduce();
     }
     
     bool equal(Rational c){
