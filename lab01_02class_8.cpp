@@ -59,8 +59,8 @@ class Rational{
         }
         if(c > d) del = c;
         else del = d;
-        a /= d;
-        b /= d;
+        a /= del;
+        b /= del;
     }
     
     void add(Rational c){
