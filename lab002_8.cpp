@@ -1,22 +1,6 @@
-//Во всех заданиях, помимо указанных в задании операций, обязательно должны быть реализованы //следующие методы:
-//– метод инициализации init;
-//– ввод с клавиатуры read;
-//– вывод на экран display;
-//– преобразование в строку toString.
-
-//Все задания должны быть реализованы двумя способами:
-//- тип данных представляется структурой с необходимыми полями, а операции реализуются как //внешние функции, которые получают объекты данного типа в качестве аргументов;
-//– как класс с закрытыми полями, где операции реализуются как методы класса.
-//8. Рациональная (несократимая) дробь представляется парой целых чисел (a, b), где a – числитель, b – знаменатель. Создать класс Rational для работы с рациональными дробями. Обязательно должны быть реализованы операции:
-//– сложения add, (a, b) + (c, d) = (ad + bc, bd);
-//– вычитания sub, (a, b) – (c, d) = (ad – bc, bd);
-//– умножения mul, (a, b)*(c, d) = (ac, bc);
-//– деления div, (a, b)/(c, d) = (ad, bc);
-//– сравнение equal, greate, less.
 #include <iostream>
 #include <string>
 using namespace std;
-//доделать
 
 int numLen(int n){
     int len = 0;
@@ -62,49 +46,91 @@ class Rational{
     string toString(){
         int  maxLen;
         maxLen = max(numLen(a),numLen(b));
-        string drob{to_string(a) + "\n" + string(maxLen, '-') + "\n" + to_string(b)}
+        string drob{to_string(a) + "\n" + string(maxLen, '-') + "\n" + to_string(b)};
         return drob;
     }
     
-    void add(int c, int d){
-        a += c;
-        b *= d;
+    void add(Rational c){
+        a = (a*c.b) + (c.a*b);
+        b *= c.b;
     }
     
-    void sub(int c, int d){
-        a -= c;
-        b *= d;
+    void sub(Rational c){
+        a = (a*c.b) - (c.a*b);
+        b *= c.b;
     }
     
-    void mul(int c, int d){
-        a *= c;
-        b *= d;
+    void mul(Rational c){
+        a *= c.a;
+        b *= c.b;
     }
     
-    void div(int c, int d){
-        a *= d;
-        b *= c;
-    }
-
-    //общий делитель по алгоритму евклида
-    int del(){
-        int c = a, d = b;
-        while(c>0 && d>0){
-            if(c >= d) c %= d;
-            else d %= c;
-        }
-        if(c > d) return c;
-        else return d;
+    void div(Rational c){
+        a *= c.b;
+        b *= c.a;
     }
     
-    bool equal(Rational c1, Rational c2){
-        int d1 = c1.del();
-        int d2 = c2.del();
-        return true;
+    bool equal(Rational c){
+        float a1 = a, b1 = b;
+        float a2 = c.a, b2 = c.b;
+        return (a1/b1) == (a2/b2);
+    }
+    
+    int greate(Rational c){
+        float a1 = a, b1 = b;
+        float a2 = c.a, b2 = c.b;
+        if((a1/b1) == (a2/b2)) return 2;
+        return (a1/b1) > (a2/b2);
+    }
+    
+    int less(Rational c){
+        float a1 = a, b1 = b;
+        float a2 = c.a, b2 = c.b;
+        if((a1/b1) == (a2/b2)) return 2;
+        return (a1/b1) < (a2/b2);
     }
 };
 
 int main() {
     Rational d1, d2;
+    int choice = 0;
+    do{
+        cout << "Меню:" <<endl
+        << "(1)Вв. дробь d1" << endl
+        << "(2)Вв. дробь d2" << endl
+        << "(3)Выв. дробь d1" << endl
+        << "(4)Выв. дробь d2" << endl
+        << "(5)Выв. дробь d1 через string" << endl
+        << "(6)Выв. дробь d2 через string" << endl
+        << "(7)d1 += d2" << endl
+        << "(8)d1 -= d2" << endl
+        << "(9)d1 *= d2" << endl
+        << "(10)d1 /= d2" << endl
+        << "(11)Выв. d1 == d2" << endl
+        << "(12)Выв. d1 > d2" << endl
+        << "(13)Выв. d1 < d2" << endl
+        << "(0)Выход" << endl
+        << "Ввод: "; cin >> choice;
+        
+        switch(choice){
+            case 1: d1.read(); break;
+            case 2: d2.read(); break;
+            case 3: d1.display(); break;
+            case 4: d2.display(); break;
+            case 5: cout << d1.toString() << endl; break;
+            case 6: cout << d2.toString() << endl; break;
+            case 7: d1.add(d2); break;
+            case 8: d1.sub(d2); break;
+            case 9: d1.mul(d2); break;
+            case 10: d1.div(d2); break;
+            case 11: cout << (d1.equal(d2)?"d1 == d2":"d1 != d2") << endl; break;
+            case 12: 
+                if(d1.greate(d2)==2) cout << "d1 == d2" << endl; break;
+                cout << (d1.greate(d2)?"d1 > d2":"d1 < d2") << endl; break;
+            case 13: 
+                if(d1.greate(d2)==2) cout << "d1 == d2" << endl; break;
+                cout << (d1.less(d2)?"d1 < d2":"d1 > d2") << endl; break;
+        }
+    }while(choice);
     return 0;
 }
