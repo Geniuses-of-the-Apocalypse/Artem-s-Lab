@@ -147,11 +147,11 @@ int main() {
             case 10: d1.div(d2); break;
             case 11: cout << (d1.equal(d2)?"d1 == d2":"d1 != d2") << endl; break;
             case 12: 
-                if(d1.greate(d2)==2) cout << "d1 == d2" << endl; break;
-                cout << (d1.greate(d2)?"d1 > d2":"d1 < d2") << endl; break;
+                if(d1.greate(d2)==2) {cout << "d1 == d2" << endl; break;}
+                else {cout << (d1.greate(d2)?"d1 > d2":"d1 < d2") << endl; break;}
             case 13: 
-                if(d1.greate(d2)==2) cout << "d1 == d2" << endl; break;
-                cout << (d1.less(d2)?"d1 < d2":"d1 > d2") << endl; break;
+                if(d1.greate(d2)==2) {cout << "d1 == d2" << endl; break;}
+                else {cout << (d1.less(d2)?"d1 < d2":"d1 > d2") << endl; break;}
         }
     }while(choice);
     return 0;
