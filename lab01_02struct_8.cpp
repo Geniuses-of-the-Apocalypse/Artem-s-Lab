@@ -105,14 +105,12 @@ bool equal(Rational c1, Rational c2){
 int greate(Rational c1, Rational c2){
     float a1 = c1.a, b1 = c1.b;
     float a2 = c2.a, b2 = c2.b;
-    if((a1/b1) == (a2/b2)) return 2;
     return (a1/b1) > (a2/b2);
 }
 
 int rLess(Rational c1, Rational c2){
     float a1 = c1.a, b1 = c1.b;
     float a2 = c2.a, b2 = c2.b;
-    if((a1/b1) == (a2/b2)) return 2;
     return (a1/b1) < (a2/b2);
 }
 
@@ -167,12 +165,8 @@ int main() {
                 d3.display(); 
                 break;
             case 11: cout << (equal(d1, d2)?"d1 == d2":"d1 != d2") << endl; break;
-            case 12: 
-                if(greate(d1, d2)==2) {cout << "d1 == d2" << endl; break;}
-                else {cout << (greate(d1, d2)?"d1 > d2":"d1 < d2") << endl; break;}
-            case 13: 
-                if(greate(d1, d2)==2) {cout << "d1 == d2" << endl; break;}
-                else {cout << (rLess(d1, d2)?"d1 < d2":"d1 > d2") << endl; break;}
+            case 12: cout << (greate(d1, d2)?"d1 > d2":"d1 <= d2") << endl; break;
+            case 13: cout << (rLess(d1, d2)?"d1 < d2":"d1 >= d2") << endl; break;
         }
     }while(choice);
     return 0;
