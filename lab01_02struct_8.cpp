@@ -102,13 +102,13 @@ bool equal(Rational c1, Rational c2){
     return (a1/b1) == (a2/b2);
 }
 
-int greate(Rational c1, Rational c2){
+bool greate(Rational c1, Rational c2){
     float a1 = c1.a, b1 = c1.b;
     float a2 = c2.a, b2 = c2.b;
     return (a1/b1) > (a2/b2);
 }
 
-int rLess(Rational c1, Rational c2){
+bool rLess(Rational c1, Rational c2){
     float a1 = c1.a, b1 = c1.b;
     float a2 = c2.a, b2 = c2.b;
     return (a1/b1) < (a2/b2);
