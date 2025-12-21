@@ -144,8 +144,8 @@ int main() {
             case 9: d1.mul(d2); break;
             case 10: d1.div(d2); break;
             case 11: cout << (d1.equal(d2)?"d1 == d2":"d1 != d2") << endl; break;
-            case 12: cout << (d1.greate(d2)?"d1 больше d2":"d1 не больше d2") << endl; break;
-            case 13: cout << (d1.less(d2)?"d1 меньше d2":"d1 не меньше d2") << endl; break;
+            case 12: cout << (d1.greate(d2)?"d1 > d2":"d1 <= d2") << endl; break;
+            case 13: cout << (d1.less(d2)?"d1 < d2":"d1 >= d2") << endl; break;
         }
     }while(choice);
     return 0;
