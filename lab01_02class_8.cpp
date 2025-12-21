@@ -93,17 +93,15 @@ class Rational{
         return (a1/b1) == (a2/b2);
     }
     
-    int greate(Rational c){
+    bool greate(Rational c){
         float a1 = a, b1 = b;
         float a2 = c.a, b2 = c.b;
-        if((a1/b1) == (a2/b2)) return 2;
         return (a1/b1) > (a2/b2);
     }
     
-    int less(Rational c){
+    bool less(Rational c){
         float a1 = a, b1 = b;
         float a2 = c.a, b2 = c.b;
-        if((a1/b1) == (a2/b2)) return 2;
         return (a1/b1) < (a2/b2);
     }
 };
@@ -146,12 +144,8 @@ int main() {
             case 9: d1.mul(d2); break;
             case 10: d1.div(d2); break;
             case 11: cout << (d1.equal(d2)?"d1 == d2":"d1 != d2") << endl; break;
-            case 12: 
-                if(d1.greate(d2)==2) {cout << "d1 == d2" << endl; break;}
-                else {cout << (d1.greate(d2)?"d1 > d2":"d1 < d2") << endl; break;}
-            case 13: 
-                if(d1.greate(d2)==2) {cout << "d1 == d2" << endl; break;}
-                else {cout << (d1.less(d2)?"d1 < d2":"d1 > d2") << endl; break;}
+            case 12: cout << (d1.greate(d2)?"d1 больше d2":"d1 не больше d2") << endl; break;
+            case 13: cout << (d1.less(d2)?"d1 меньше d2":"d1 не меньше d2") << endl; break;
         }
     }while(choice);
     return 0;
