@@ -32,7 +32,6 @@ class Rational{
     void display(){
         int  maxLen;
         maxLen = max(numLen(a),numLen(b));
-        
         cout << a << endl;
         cout << string(maxLen, '-') << endl;
         cout << b << endl;
@@ -103,6 +102,17 @@ class Rational{
         float a2 = var.a, b2 = var.b;
         return (a1/b1) < (a2/b2);
     }
+    
+    friend istream& operator >> (istream& i, Rational& var){
+        i >> var.a >> var.b;
+        return i;
+    }
+    
+    friend ostream& operator << (ostream& o, Rational& var){
+        o << var.a << '/' << var.b;
+        return o;
+    }
+    
 };
 
 void menu(){
@@ -132,10 +142,10 @@ int main() {
         cin >> choice;
         
         switch(choice){
-            case 1: d1.read(); break;
-            case 2: d2.read(); break;
-            case 3: d1.display(); break;
-            case 4: d2.display(); break;
+            case 1: cin >> d1; break;
+            case 2: cin >> d2; break;
+            case 3: cout << "Дробь d1: " << d1 << endl; break;
+            case 4: cout << "Дробь d2: " << d2 << endl; break;
             case 5: cout << d1.toString() << endl; break;
             case 6: cout << d2.toString() << endl; break;
             case 7: d1 = d1 + d2; break;
