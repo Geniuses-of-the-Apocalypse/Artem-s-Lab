@@ -30,7 +30,7 @@ template<typename... Args>
 auto reverseArgs17(Args&&... args) {
     //fold expression для создания лямбды
     auto printer = [&args...]() {
-        (std::cout << ... << args);
+        (cout << ... << args);
     };
     
     //возвращаем функцию, которая будет вызываться рекурсивно
