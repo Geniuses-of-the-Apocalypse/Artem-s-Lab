@@ -1,10 +1,10 @@
 #include <iostream>
 
-// Вспомогательная структура для хранения значений
+//вспомогательная структура для хранения значений
 template<typename... Ts>
 struct ReversedTuple;
 
-// Специализация для пустого набора
+//специализация для пустого набора
 template<>
 struct ReversedTuple<> {
     static auto reverse() {
@@ -12,7 +12,7 @@ struct ReversedTuple<> {
     }
 };
 
-// Специализация для непустого набора
+//специализация для непустого набора
 template<typename T, typename... Ts>
 struct ReversedTuple<T, Ts...> {
     static auto reverse(T&& first, Ts&&... rest) {
@@ -24,14 +24,25 @@ struct ReversedTuple<T, Ts...> {
     }
 };
 
-// Основная функция для C++17
+//основная функция для C++17
 template<typename... Args>
 auto reverseArgs17(Args&&... args) {
-    // Fold expression для создания лямбды
+    //fold expression для создания лямбды
     auto printer = [&args...]() {
         (std::cout << ... << args);
     };
     
-    // Возвращаем функцию, которая будет вызываться рекурсивно
+    //возвращаем функцию, которая будет вызываться рекурсивно
     return ReversedTuple<Args...>::reverse(std::forward<Args>(args)...);
+}
+
+int main() {
+    auto result1 = reverseArgs(1);
+    cout << "reverseArgs(1) = " << result1 << endl;
+    auto result2 = reverseArgs(1, 2);
+    cout << "reverseArgs(1, 2) = " << result2 << endl;
+    auto result3 = reverseArgs(1, 2, 3);
+    cout << "reverseArgs(1, 2, 3) = " << result3 << endl;
+    auto result4 = reverseArgs(1, 2, 3, 4);
+    cout << "reverseArgs(1, 2, 3, 4) = " << result4 << endl;
 }
