@@ -1,5 +1,7 @@
 import csv
 
+#lab 1 daf20df34b8246b4580bf1692d52b1f7
+
 def parse_csv(data: str) -> list[dict]:
     return list(csv.DictReader(data.splitlines()))
 
